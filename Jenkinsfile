@@ -37,8 +37,7 @@ pipeline {
       stage ('Deploy') {
             steps {
                 sh '''
-                ssh -i /var/lib/jenkins/.ssh/id_ed25519 ubuntu@10.0.46.12 'source /home/ubuntu/setup.sh'
-
+                ssh -i "/var/lib/jenkins/.ssh/id_ed25519" ubuntu@10.0.46.12 'source /home/ubuntu/setup.sh'
                 '''
             }
         }
