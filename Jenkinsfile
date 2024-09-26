@@ -4,8 +4,6 @@ pipeline {
         stage ('Build') {
             steps {
                 sh '''#!/bin/bash
-                sudo apt-get update
-                sudo apt-get install python3-pip python3-venv
                 python3.9 -m venv venv
                 source venv/bin/activate
                 pip install pip --upgrade
@@ -38,11 +36,8 @@ pipeline {
         }
       stage ('Deploy') {
             steps {
-                script {
-                    withCredentials([string(credentialsId: 'PRIVATE_IP', variable: 'MY_PRIVATE_IP')]) {
-                        ssh -i id_ed25519 ubuntu@${env.MY_PRIVATE_IP}
-                        source setup.sh
-                    }
+                ssh -i id_ed25519 ubuntu@10.0.46.12
+                source setup.sh
             }
         }
     }
