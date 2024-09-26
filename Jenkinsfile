@@ -4,7 +4,16 @@ pipeline {
         stage ('Build') {
             steps {
                 sh '''#!/bin/bash
-                <enter your code here>
+                sudo apt-get update
+                sudo apt-get install python3-pip python3-venv
+                python3.9 -m venv venv
+                source venv/bin/activate
+                pip install pip --upgrade
+                pip install -r requirements.txt
+                pip install gunicorn pymysql cryptography
+                export FLASK_APP=microblog.py
+                flask translate compile
+                flask db upgrade
                 '''
             }
         }
@@ -29,9 +38,11 @@ pipeline {
         }
       stage ('Deploy') {
             steps {
-                sh '''#!/bin/bash
-                <enter your code here>
-                '''
+                script {
+                    withCredentials([string(credentialsId: 'PRIVATE_IP', variable: 'MY_PRIVATE_IP')]) {
+                        ssh -i id_ed25519 ubuntu@${env.MY_PRIVATE_IP}
+                        source setup.sh
+                    }
             }
         }
     }
