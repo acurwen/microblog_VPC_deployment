@@ -1,4 +1,4 @@
-# Workload 4 Notes
+# Workload 4: Microblog VPC Deployment
 
 # Purpose:
 In this workload, we deployed our microblog application with a more robust and secure infrastructure where we separated the deployment environment (in the default VPC) from the production environment (in the custom VPC). We also explore the use of SSH tunneling to deploy the microblog application.
@@ -419,9 +419,9 @@ In the Prometheus web GUI, in Status > Targets I saw my Node Exporter endpoint w
 # Optimization:
 What are the advantages of separating the deployment environment from the production environment? Separating deployment environment from the production environment ensures more security around the application code in the production environment separate from the web server its hosted on so that in the case of an attack, there's multiple defense posts so to speak in front of the application code.
 
-Does the infrastructure in this workload address these concerns? Yes, we had our application tier in a different EC2 than our web server tier, which was in a separate VPC than our Jenkins EC2 and monitoring.. 
+Does the infrastructure in this workload address these concerns? Yes, we had our application tier in a different EC2 than our web server tier, which was in a separate VPC than our Jenkins EC2 and monitoring EC2.
 
-Could the infrastructure created in this workload be considered that of a "good system"? Why or why not? Copying the key pairs over manually felt prone to human error. In fact, I Did make an error where I copied over the key fingerprint instead of the public key to the authroized keys file. 
+Could the infrastructure created in this workload be considered that of a "good system"? Why or why not? Yes, but copying the key pairs over manually felt prone to human error. In fact, I did make an error where I copied over the key fingerprint instead of the public key to the authorized keys file. 
 
 # Conclusion:
 Splitting up our infrastructure made this project feel quite realistic, specifically understanding how many moving parts are involved in deploying and hosting an applciation and why it's important to ensure that those parts are able to communicate with one another. 
