@@ -16,16 +16,18 @@ Cloned the [Workload 4 repository](https://github.com/kura-labs-org/C5-Deploymen
 
 **VPC:**
 [![image](https://github.com/user-attachments/assets/52d39846-ad03-40e2-a6a8-2d5a5638e665)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/VPC.png)
-
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/VPC.png)
 
 **Network ACL:**
 Left the custom VPC's NACL to its default settings: to allow all inbound traffic and allow all outbound traffic from all sources.
 
 Created **Internet Gateway** called "W4 Internet Gateway" and attached it to the "Workload 4 VPC".
-![image](https://github.com/user-attachments/assets/44dcc486-fe46-40e7-8c87-40357a731a7a)
+[![image](https://github.com/user-attachments/assets/ef967605-200d-48cd-ad34-25d9fac7aabe)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Internet%20Gateway.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Internet%20Gateway.png)
 
 Created **NAT Gateway** called "W4 NAT Gateway" in the public subnet and assigned an Elastic IP (static/non-changing IP).
-![image](https://github.com/user-attachments/assets/e8d844ec-34cc-4d72-90b4-45fe89ca869c)
+[![image](https://github.com/user-attachments/assets/9c8a45e9-cd19-4d21-9620-dbc21d105450)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/NAT%20Gateway.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/NAT%20Gateway.png)
 
 **Created Public and Private Route Tables:**
 - Public Route Table:
@@ -33,14 +35,16 @@ Created **NAT Gateway** called "W4 NAT Gateway" in the public subnet and assigne
     - local connection
     - "W4 Internet Gateway" added
 
-![image](https://github.com/user-attachments/assets/ce1bee0c-6b49-4396-9130-7c274e65d607)
+[![image](https://github.com/user-attachments/assets/6a120515-a7d1-46af-bae1-401c645a65cc)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Public%20Route%20Table.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Public%20Route%20Table.png)
 
 - Private Route Table:
     - named "privateRT"
     - local connection
     - "W4 NAT Gateway" added
 
-![image](https://github.com/user-attachments/assets/aa222788-5a39-40df-8d04-5b9aa1703d83)
+[![image](https://github.com/user-attachments/assets/5dd3faf6-3d34-4a74-ba61-aacb00a1d68a)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Private%20Route%20Table.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Private%20Route%20Table.png)
 
 **Created my Public and Private Subnets:**
 - Public Subnet:
@@ -54,7 +58,8 @@ Created **NAT Gateway** called "W4 NAT Gateway" in the public subnet and assigne
     - Associated with "privateRT" route table 
 
 Subnets:
-![image](https://github.com/user-attachments/assets/d57706de-a0db-430f-bdf1-a457e0f9187b)
+[![image](https://github.com/user-attachments/assets/5a97f3e8-2bf1-4bc0-85ec-001440c0bb16)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Public%20and%20Private%20Subnets.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Public%20and%20Private%20Subnets.png)
 
 ## Jenkins EC2 in Default VPC:
 In my default VPC, I created a t3.medium EC2 called "Jenkins."
@@ -63,11 +68,12 @@ Availability zone is us-east-1a. Security group rules: Inbound (Ports 8080: Jenk
 To install Jenkins, I wrote a script with all the Jenkins installation commands to automate the installation.
 I added in some echo statements that introduced each line of code and sleep statements throughout, so I could see during the installation process where the script was.
 
-![image](https://github.com/user-attachments/assets/6df2df7a-d39b-4f4e-ad03-7be078c1d71c)
+[![image](https://github.com/user-attachments/assets/588d0b5c-3cc1-43dd-8de8-5e1722ccb39f)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Jenkins%20Script.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Jenkins%20Script.png)
 
 Jenkins installation was successful:
-![image](https://github.com/user-attachments/assets/03224745-aa55-4778-8931-7fd93d54a53c)
-
+[![image](https://github.com/user-attachments/assets/5f4317f3-c129-41c8-9f1c-b06557ff12cb)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Jenkins%20installation%20status.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Jenkins%20installation%20status.png)
 
 ## EC2 Instances in Custom VPC:
 Within my "Workload 4 VPC", I created two instances: one acting as the web tier and the other as the application tier. 
@@ -90,7 +96,9 @@ Ran the `ssh-keygen` command in the the "Jenkins" server. Copied the public key 
 To test the connection, I ran `ssh -i id_ed25519 ubuntu@100.26.52.94` to SSH into the 'Web_Server' EC2 from the 'Jenkins' EC2. (The IP after 'ubuntu' is the public IP of the Web Server.) 
 
 After successfullly SSH-ing into the 'Web_Server' EC2, I got confirmation that the 'Web_Server' EC2 was permanently added to the list of known hosts. 
-![image](https://github.com/user-attachments/assets/b120e464-70bf-4ef1-acc1-0f789f1dbc01)
+[![image](https://github.com/user-attachments/assets/fde76f6b-d084-456f-ae79-2dcfa6474494)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/known%20hosts.png)
+
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/known%20hosts.png)
 
 However, the public IP address was added and I wondered if that would create issues later since the public IP changes. I tried to SSH with the private key of my Web_Server EC2, but that didn't work. Later on, I used VPC peering to connect the default VPC (that holds Jenkins) and my custom VPC (that holds the Web_Server) so that I could run the same command above with the private IP of my Web_Server.
 
@@ -102,15 +110,18 @@ In the Web_Server EC2, I installed NginX by running `sudo apt-get install nginx`
 
 Installation Successful:
 
-![image](https://github.com/user-attachments/assets/4601d09a-40e2-457d-bfed-3412e874b379)
+[![image](https://github.com/user-attachments/assets/b542ce51-627e-43de-9c86-f5637b135c6d)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/NginX%20installation%20status.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/NginX%20installation%20status.png)
 
 Then from the root directory, I ran `cd ./etc/nginx/sites-enabled` and sudo nano'd into the "default" file. There I modified the "location" section to read as below. The IP shown is the private IP address of the application server and port 5000 is where Gunicorn listens for incoming requests. 
 
-![image](https://github.com/user-attachments/assets/9c4a6321-42b9-4978-931c-53b68e8352d3)
+[![image](https://github.com/user-attachments/assets/5d8c7890-e477-4705-b928-861a3e9f42e0)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/NginX%20config%20file.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/NginX%20config%20file.png)
 
 Running `sudo nginx -t` verfied that the config file had correct syntax and had a successful test. 
 
-![image](https://github.com/user-attachments/assets/4f901bfe-5c7b-444c-9626-b6dbca6befc0)
+[![image](https://github.com/user-attachments/assets/5db66c64-d1fa-4503-8c15-13c79378c524)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/sudo%20nginx%20-t.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/sudo%20nginx%20-t.png)
 
 Then to restart NginX, I ran `sudo systemctl restart nginx`.
 
@@ -123,7 +134,8 @@ To test the connection, I ran `ssh -i appserver.pem ubuntu@10.0.92.22` to SSH in
 
 Successfullly SSH'd into the "Application_Server" EC2:
 
-![image](https://github.com/user-attachments/assets/5eebfcd3-7e9c-4aff-bef8-5bb0ed2798e7)
+[![image](https://github.com/user-attachments/assets/2e4e48a7-b386-49d8-a395-781b24d3d638)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/SSH'd%20into%20the%20Application_Server.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/SSH'd%20into%20the%20Application_Server.png)
 
 # Scripts:
 
@@ -174,7 +186,8 @@ To test the script, from my Web_Server I ssh'd into my Application_Server to cre
 Next, I put the Web_Server IP address into my browser to confirm the microblog application was up and running and it was!
 
 Then I ran `pgrep gunicorn` to see the processes running related to gunicorn and as expected, saw the gunicorn process as well as 4 other processes representing the 4 workers. Then I ran `pkill gunicorn` to kill all processes related.
-![image](https://github.com/user-attachments/assets/8ede11da-a30b-4ac4-953b-934903f87a2e)
+[![image](https://github.com/user-attachments/assets/7e7bd7a2-3912-43b1-b2d6-8edc6bdb9ee2)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Testing%20start_app.sh%20script%20and%20pkill%20gunicorn.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Testing%20start_app.sh%20script%20and%20pkill%20gunicorn.png)
 
 ## "setup.sh" script
 For the setup.sh script, I wrote the command to SSH into the "Application_Server" using its private IP. Next, I use the curl command with the -O flag to download my start_app.sh script that I had added to my GH repository. This step ensures that once I've SSH'd into the "Application_Server", I'll ensure that the start_app.sh script is available to be ran. Then I used `source` to run the start_app.sh script. To ensure all commands are run once the SSH into the "Application_Server" is done, I wrapped the rest of my commands with "<< EOF" "EOF" to make sure that they were run while still in the "Application_Server" -- more on this below.
@@ -220,10 +233,12 @@ Before starting a build in Jenkins, I set up VPC Peering to connect the default 
 
 I set up VPC Peering so that in my Deploy stage, I could SSH into the Web Server from the Jenkins server with the private IP of the Web_Server. I updated the route tables of each VPC to have the Peering Connection I created and set the destination IP to be the CIDR block of the opposite VPC. 
 
-![image](https://github.com/user-attachments/assets/fe202885-fc1a-4606-acf1-edd16fd1ed7c)
+[![image](https://github.com/user-attachments/assets/f4c09d39-4eda-4f3c-90fd-5b4e602dc4ca)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/VPC%20Peering.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/VPC%20Peering.png)
 
 Public Route Table (Custom VPC):
-![image](https://github.com/user-attachments/assets/15163a63-667e-415a-8d43-beeb61304d49)
+[![image](https://github.com/user-attachments/assets/4d4c655c-e8a6-4e72-b846-5b68ffd5e83d)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Public%20Route%20Table%20(Custom%20VPC)%20%2B%20VPC%20Peering%20Connection.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Public%20Route%20Table%20(Custom%20VPC)%20%2B%20VPC%20Peering%20Connection.png)
 
 Was successfully able to SSH from the Jenkins EC2 into the Web_Server with the private IP of the Web_Server.
 
@@ -259,19 +274,22 @@ ssh -i "/var/lib/jenkins/.ssh/id_ed25519" ubuntu@10.0.46.12 'source /home/ubuntu
 
 Build was a success:
 
-![image](https://github.com/user-attachments/assets/037fc7cb-81d3-4333-8027-d9dfa7d4e725)
-
+[![image](https://github.com/user-attachments/assets/7d06bf2b-9fd5-4c27-b1a0-0b95e4dbb07c)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Successful%20Jenkins%20Build.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Successful%20Jenkins%20Build.png)
 
 After a successful build, I tested the public IP of the Web_Server and the application showed up:
-![image](https://github.com/user-attachments/assets/955e298c-c169-4716-801e-0502c31b9a4f)
+[![image](https://github.com/user-attachments/assets/e4e7371a-f693-4705-9723-2b1742ab6b22)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Testing%20Microblog.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Testing%20Microblog.png)
 
-**How do you get the scripts onto their respective servers if they are saved in the GitHub Repo? Do you SECURE COPY the file from one server to the next in the pipeline? Do you C-opy URL the file first as a setup? How much of this process is manual vs. automated?** I used the curl command to download the scripts onto their respective servers from GH. I used a manual command to get the setup.sh script onto the Web_Server, but the curl command to get the start_app.sh script onto the Application_Server was ran in the setup.sh script, automating that process. 
+**How do you get the scripts onto their respective servers if they are saved in the GitHub Repo? Do you SECURE COPY the file from one server to the next in the pipeline? Do you C-opy URL the file first as a setup? How much of this process is manual vs. automated?** 
+I used the curl command to download the scripts onto their respective servers from GH. I used a manual command to get the setup.sh script onto the Web_Server, but the curl command to get the start_app.sh script onto the Application_Server was ran in the setup.sh script, automating that process. 
 
-**In WL3, a method of "keeping the process alive" after a Jenkins stage completed was necessary. Is it in this Workload? Why or why not?** The keep the process alive method is not present in this workload nor was it necessary here because there's no Clean stage in the Jenkinsfile that stopped the gunicorn process. We are also serving up the appliction in the background in the Deploy stage with --daemon.  
+**In WL3, a method of "keeping the process alive" after a Jenkins stage completed was necessary. Is it in this Workload? Why or why not?** 
+The keep the process alive method is not present in this workload nor was it necessary here because there's no Clean stage in the Jenkinsfile that stopped the gunicorn process. We are also serving up the appliction in the background in the Deploy stage with --daemon.  
 
 # Monitoring:
 
-Created "Monitoring" EC2 Instance::
+Created "Monitoring" EC2 Instance:
 - AMI (Amazon Machine Image): Ubuntu
 - Instance type: t3.micro
 - Key pair used was my default one
@@ -281,23 +299,32 @@ Created "Monitoring" EC2 Instance::
 - Storage was set to 1x8 GiB and gp3 (General Purpose SSD) Root Volume
 
 Instance:
-![image](https://github.com/user-attachments/assets/c4c34c7d-75f0-4dbd-a878-c7fc3fdfbcd1)
+[![image](https://github.com/user-attachments/assets/7970aea2-6ce8-4a71-ada2-fdc1dced5d4b)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Monitoring%20EC2%20Instance.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Monitoring%20EC2%20Instance.png)
 
 Security groups:
-![image](https://github.com/user-attachments/assets/257b7202-893a-4092-bcfc-bc5dc8991d8a)
-
+[![image](https://github.com/user-attachments/assets/e2e9a490-9f85-4857-95fd-72043115ade2)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Monitoring%20EC2%20Security%20groups.png)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Monitoring%20EC2%20Security%20groups.png)
 
 To install Prometheus, Grafana and Node Exporter, I followed the steps in Mike's [repository](https://github.com/mmajor124/monitorpractice_promgraf/tree/main):
 
 - Created and ran [promgraf.sh](https://github.com/mmajor124/monitorpractice_promgraf/blob/main/promgraf.sh) within my Monitoring instance
 
-![image](https://github.com/user-attachments/assets/6e1b45ee-c2f6-4167-98f2-d6ce31f446b7)
+[![image](https://github.com/user-attachments/assets/21718397-c0eb-4a07-9870-78e18b1cfbcd)
+](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Prometheus%2C%20Grafana%20Install.png)
+
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Prometheus%2C%20Grafana%20Install.png)
 
 Confirmed that Grafana and Prometheus were up and running:
-![image](https://github.com/user-attachments/assets/039c0587-4fd7-4922-a32e-8d44e4f56bcf)
+[![image](https://github.com/user-attachments/assets/8a5cce41-abee-4374-8a10-d0a7a7306996)
+](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Grafana%20up%20and%20running.png)
 
-![image](https://github.com/user-attachments/assets/6ae7979b-b146-42e5-82a9-4cbe31ec7058)
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Grafana%20up%20and%20running.png)
 
+
+[![image](https://github.com/user-attachments/assets/10e756a1-9e65-4fec-887f-c0c3234162bf)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Prometheus%20up%20and%20running.png)
+
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Prometheus%20up%20and%20running.png)
 
 - Created and ran [nodex.sh](https://github.com/mmajor124/monitorpractice_promgraf/blob/main/nodex.sh) within my Application_Server instance (by SSHing into it from the Web_Server)
 
@@ -317,8 +344,9 @@ EOF
 # Restart Prometheus to apply the new configuration
 sudo systemctl restart prometheus
 ```
-![image](https://github.com/user-attachments/assets/9bc8039c-cb21-4e8c-9f0e-5f41623e57b0)
+[![image](https://github.com/user-attachments/assets/f21def05-62fe-4a5d-87f6-4fe8484dd90b)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Node%20Exporter%20Install.png)
 
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Node%20Exporter%20Install.png)
 
 Then back in my Monitoring EC2, I ran those code sections:
 
@@ -336,8 +364,9 @@ Then I ran `sudo nano /opt/prometheus/prometheus.yml` to doublecheck that the li
 Later on I changed 'localhost' to the private IP of my Application_Server instance so that it could remain static. Then I ran `sudo systemctl restart prometheus` to update Prometheus with my updated endpoints. 
 
 Lastly, I checked the targets in Prometheus to ensure my endpoints were "UP":
-![image](https://github.com/user-attachments/assets/4fc91b9e-c419-42ac-875d-fae6ef8dc1e7)
+[![image](https://github.com/user-attachments/assets/c17d6e90-56f2-46c7-8c0d-fd4bdf388bca)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Prometheus%20Endpoints.png)
 
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Prometheus%20Endpoints.png)
 
 We need all three of these systems because Grafana needs to understand where to find the data to make the graphs. Prometheus is the one grabbing all the data and lastly Node Exporter is the one storing all the metrics and handing Prometheus all the metrics. Grafana speaks to Prometheus within the Monitoring instance which speaks to Node Exporter that's scraping metrics from the Application_Server instance.
 
@@ -351,12 +380,14 @@ This time around, I imported a Node Exporter dashboard from Grafana's [templates
 
 **Grafana Dashboard:**
 
-![image](https://github.com/user-attachments/assets/aaecc145-5cc9-4f76-ac82-03f4570ae8d4)
-![image](https://github.com/user-attachments/assets/15f2904e-c942-42a1-9032-47503fef6399)
+[![image](https://github.com/user-attachments/assets/93d45a2d-f082-49a4-994a-9d4479514037)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Grafana%20Dashboard%201.png)
+[![image](https://github.com/user-attachments/assets/b8eb38ef-50a7-4cbe-aa79-74514dfe3edd)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Grafana%20Dashboard%202.png)
 
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Grafana%20Dashboard%201.png), [SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Grafana%20Dashboard%202.png)
 
-# System Design Diagram:
-![image](https://github.com/user-attachments/assets/b0c7b4b8-a254-42c3-974b-e4af4f4d726f)
+# [System Design Diagram](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Diagram.jpg):
+[![image](https://github.com/user-attachments/assets/df52bf62-e0d7-41d4-9e97-538d9e6cf9ce)
+](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Diagram.jpg)
 
 
 # Troubleshooting:
@@ -367,7 +398,9 @@ When creating my Jenkins installation script, I didn't include the commands to i
 "Package python is not available, but is referred to by another package."
 "Package ‘python’ has no installation candidate."
 
-![image](https://github.com/user-attachments/assets/75049762-209a-42a1-bc5d-72049898ed00)
+[![image](https://github.com/user-attachments/assets/c69ad0bc-4e22-480d-931c-947c4c518179)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Package%20python%20is%20not%20available.png)
+
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Package%20python%20is%20not%20available.png)
 
 In the command beore we are installing the python dead snakes repository which allows you to install multiple python versions. So the script ran that command which triggered the system t check for whatever pythinv ersin was supposed to be created. I can tell this because I added an echo message that says "First line complete." after that first code chunk is ran.
 
@@ -378,7 +411,9 @@ I ran `sudo apt install python3.9 python3.9-venv` to make sure I had python and 
 After copying the contents of my appserver.pem file in to anew file in the "Web_Server" EC2, I ran `ssh -i appserver.pem ubuntu@10.0.92.22` to test the connection.
 
 However, I wasn't able to connect as the "Permissions 0664 for 'appserver.pem' are too open."
-![image](https://github.com/user-attachments/assets/c4984866-de5b-4ae4-9ec0-7cc73727a895)
+[![image](https://github.com/user-attachments/assets/26b0d1f6-9ab6-40c6-9c3a-0d3fe8ec6aa6)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/SSH%20error%20Permissions%200664%20for%20.pem%20are%20too%20open.png)
+
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/SSH%20error%20Permissions%200664%20for%20.pem%20are%20too%20open.png)
 
 I forgot I needed to first change permissions of the file so that only I as the owner could have read access. 
 Ran `chmod 400 appserver.pem` and then the ssh command again and I was able to connect. 
@@ -386,7 +421,9 @@ Ran `chmod 400 appserver.pem` and then the ssh command again and I was able to c
 **Jenkins Build**
 First, I couldn't get past the Build stage because of a syntax error where I forgot the three ticks (''') that open and close a bash script and a '}'.
 
-![image](https://github.com/user-attachments/assets/861672e6-1e34-40f7-a986-b74df6ce1ca1)
+[![image](https://github.com/user-attachments/assets/4c12291d-23fb-430d-b6b9-ba2a6fc2cf81)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Jenkins%20Build%20Console%20Output%201.png)
+
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Jenkins%20Build%20Console%20Output%201.png)
 
 Then, I couldn't get past the Build stage because the build couldn't find my public key. Then I adjusted the path to where it was (/home/ubuntu/.ssh/id_ed25519) and received a Permission denied error. By default, anyone other than me cannot access. 
 To rectify, I realize I needed jenkins to be the owner of the keypair so while in the Jenkins EC2, I switched users to jenkins with `sudo su - jenkins` and ran ssh-keygen to get another keypair -- added that to the authorized key file in the Web_Server. I also changed the permissions to read permissions for the key. At first, ssh-ing still didn't work until I rebooted my instance. 
@@ -395,7 +432,9 @@ To rectify, I realize I needed jenkins to be the owner of the keypair so while i
 I also realized that I had initially copied the key fingerprint into the authorized key file instead of the actual public key. I got a message in my terminal that the key fingerprint for my key pair is "SHA256" so I thought momentarily that I needed to use that instead for future ssh-ing. 
 
 Lastly, in my Deploy Stage I included EOF after the SSH command to ensure that my source setup.sh line would run while still in the Application_server. However, I got an error where Jenkins didn't recognize that syntax. 
-![image](https://github.com/user-attachments/assets/d56d9956-bf29-41e4-b988-ef8c809cc304)
+[![image](https://github.com/user-attachments/assets/4693cf3e-9e98-42bc-be12-17c54ac52fe7)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Jenkins%20Build%20Console%20Output%202.png)
+
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Jenkins%20Build%20Console%20Output%202.png)
 
 
 So I ended up taking that out and instead wrote the source setup.sh on the same line as the SSH command with single quotes around it. 
@@ -410,12 +449,14 @@ EOF
 ssh -i "/var/lib/jenkins/.ssh/id_ed25519" ubuntu@10.0.46.12 'source /home/ubuntu/setup.sh'
 ```
 Build History:
-![image](https://github.com/user-attachments/assets/35418e9f-0dc2-46dd-8b74-64a03ccf5f62)
+[![image](https://github.com/user-attachments/assets/513f5ac1-7ed8-4acd-9dec-2c46eab4e0e7)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Jenkins%20Build%20History.png)
+
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Jenkins%20Build%20History.png)
 
 **Monitoring:**
 
 In the Prometheus web GUI, in Status > Targets I saw my Node Exporter endpoint was down. I realized that during my VPC Peering setup, I didn't update my private route table (of my custom VPC) to add the VPC Peering connection and the destination of the default VPC's CIDR. Once I added the VPC connection, my Monitoring EC2 and Application_Server EC2 were able to connect and my metrics were pulled. 
-![image](https://github.com/user-attachments/assets/a1321ae8-97c6-4c8a-b969-8849f74f4aa1)
+
 
 # Optimization:
 What are the advantages of separating the deployment environment from the production environment? Separating deployment environment from the production environment ensures more security around the application code in the production environment separate from the web server its hosted on so that in the case of an attack, there's multiple defense posts so to speak in front of the application code.
