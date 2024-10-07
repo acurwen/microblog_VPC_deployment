@@ -116,11 +116,13 @@ Installation Successful:
 Then from the root directory, I ran `cd ./etc/nginx/sites-enabled` and sudo nano'd into the "default" file. There I modified the "location" section to read as below. The IP shown is the private IP address of the application server and port 5000 is where Gunicorn listens for incoming requests. 
 
 [![image](https://github.com/user-attachments/assets/5d8c7890-e477-4705-b928-861a3e9f42e0)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/NginX%20config%20file.png)
+
 [SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/NginX%20config%20file.png)
 
 Running `sudo nginx -t` verfied that the config file had correct syntax and had a successful test. 
 
 [![image](https://github.com/user-attachments/assets/5db66c64-d1fa-4503-8c15-13c79378c524)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/sudo%20nginx%20-t.png)
+
 [SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/sudo%20nginx%20-t.png)
 
 Then to restart NginX, I ran `sudo systemctl restart nginx`.
@@ -363,10 +365,7 @@ Then I ran `sudo nano /opt/prometheus/prometheus.yml` to doublecheck that the li
 
 Later on I changed 'localhost' to the private IP of my Application_Server instance so that it could remain static. Then I ran `sudo systemctl restart prometheus` to update Prometheus with my updated endpoints. 
 
-Lastly, I checked the targets in Prometheus to ensure my endpoints were "UP":
-[![image](https://github.com/user-attachments/assets/c17d6e90-56f2-46c7-8c0d-fd4bdf388bca)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Prometheus%20Endpoints.png)
-
-[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Prometheus%20Endpoints.png)
+Lastly, I checked the targets in Prometheus to ensure my endpoints were "UP".
 
 We need all three of these systems because Grafana needs to understand where to find the data to make the graphs. Prometheus is the one grabbing all the data and lastly Node Exporter is the one storing all the metrics and handing Prometheus all the metrics. Grafana speaks to Prometheus within the Monitoring instance which speaks to Node Exporter that's scraping metrics from the Application_Server instance.
 
@@ -457,6 +456,9 @@ Build History:
 
 In the Prometheus web GUI, in Status > Targets I saw my Node Exporter endpoint was down. I realized that during my VPC Peering setup, I didn't update my private route table (of my custom VPC) to add the VPC Peering connection and the destination of the default VPC's CIDR. Once I added the VPC connection, my Monitoring EC2 and Application_Server EC2 were able to connect and my metrics were pulled. 
 
+[![image](https://github.com/user-attachments/assets/c17d6e90-56f2-46c7-8c0d-fd4bdf388bca)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Prometheus%20Endpoints.png)
+
+[SS](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/Prometheus%20Endpoints.png)
 
 # Optimization:
 What are the advantages of separating the deployment environment from the production environment? Separating deployment environment from the production environment ensures more security around the application code in the production environment separate from the web server its hosted on so that in the case of an attack, there's multiple defense posts so to speak in front of the application code.
