@@ -15,9 +15,8 @@ Cloned the [Workload 4 repository](https://github.com/kura-labs-org/C5-Deploymen
    - Ensured no VPC endpoints because I won't need private network access to additional AWS services for this deployment.
 
 **VPC:**
-![image](https://github.com/user-attachments/assets/8fe813ef-e9e4-43ac-ab6a-438a4680ac0b)
-https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/370403963-8fe813ef-e9e4-43ac-ab6a-438a4680ac0b.png
-![image](https://github.com/user-attachments/assets/7f138118-c17f-4bc7-bea5-bdfaab81f4ec)
+[![image](https://github.com/user-attachments/assets/52d39846-ad03-40e2-a6a8-2d5a5638e665)](https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/VPC.png)
+
 
 **Network ACL:**
 Left the custom VPC's NACL to its default settings: to allow all inbound traffic and allow all outbound traffic from all sources.
