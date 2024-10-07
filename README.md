@@ -16,6 +16,8 @@ Cloned the [Workload 4 repository](https://github.com/kura-labs-org/C5-Deploymen
 
 **VPC:**
 ![image](https://github.com/user-attachments/assets/8fe813ef-e9e4-43ac-ab6a-438a4680ac0b)
+https://github.com/acurwen/microblog_VPC_deployment/blob/main/Screenshots/370403963-8fe813ef-e9e4-43ac-ab6a-438a4680ac0b.png
+![image](https://github.com/user-attachments/assets/7f138118-c17f-4bc7-bea5-bdfaab81f4ec)
 
 **Network ACL:**
 Left the custom VPC's NACL to its default settings: to allow all inbound traffic and allow all outbound traffic from all sources.
